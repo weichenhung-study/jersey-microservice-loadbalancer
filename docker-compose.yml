@@ -1,0 +1,99 @@
+version: '3.8'
+
+services:
+
+  jersey-microservice-loadbalancer-management-instance1:
+    build:
+      context: ./jersey-microservice-loadbalancer-management
+    image: jersey-microservice-loadbalancer-management-instance1-img
+    container_name: jersey-microservice-loadbalancer-management-instance1-api
+    hostname: jersey-microservice-loadbalancer-management-instance1-api
+    ports:
+      - "8031:8080"
+    networks:
+      - mysqlnetwork
+
+  jersey-microservice-loadbalancer-management-instance2:
+    build:
+      context: ./jersey-microservice-loadbalancer-management
+    image: jersey-microservice-loadbalancer-management-instance2-img
+    container_name: jersey-microservice-loadbalancer-management-instance2-api
+    hostname: jersey-microservice-loadbalancer-management-api
+    ports:
+      - "8032:8080"
+    networks:
+      - mysqlnetwork
+
+  ####################
+  jersey-microservice-loadbalancer-transactions-instance1:
+    build:
+      context: ./jersey-microservice-loadbalancer-transactions
+    image: jersey-microservice-loadbalancer-transactions-instance1-img
+    container_name: jersey-microservice-loadbalancer-transactions-instance1-api
+    hostname: jersey-microservice-loadbalancer-transactions-instance1-api
+    ports:
+      - "8034:8080"
+    networks:
+      - mysqlnetwork
+
+  jersey-microservice-loadbalancer-transactions-instance2:
+    build:
+      context: ./jersey-microservice-loadbalancer-transactions
+    image: jersey-microservice-loadbalancer-transactions-instance2-img
+    container_name: jersey-microservice-loadbalancer-transactions-instance2-api
+    hostname: jersey-microservice-loadbalancer-transactions-instance2-api
+    ports:
+      - "8035:8080"
+    networks:
+      - mysqlnetwork
+
+  ####################
+  jersey-microservice-loadbalancer-billing-instance1:
+    build:
+      context: ./jersey-microservice-loadbalancer-billing
+    image: jersey-microservice-loadbalancer-billing-instance1-img
+    container_name: jersey-microservice-loadbalancer-billing-instance1-api
+    hostname: jersey-microservice-loadbalancer-billing-instance1-api
+    ports:
+      - "8037:8080"
+    networks:
+      - mysqlnetwork
+
+  jersey-microservice-loadbalancer-billing-instance2:
+    build:
+      context: ./jersey-microservice-loadbalancer-billing
+    image: jersey-microservice-loadbalancer-billing-instance2-img
+    container_name: jersey-microservice-loadbalancer-billing-instance2-api
+    hostname: jersey-microservice-loadbalancer-billing-instance2-api
+    ports:
+      - "8038:8080"
+    networks:
+      - mysqlnetwork
+
+  ####################
+  jersey-microservice-loadbalancer-dispute-instance1:
+    build:
+      context: ./jersey-microservice-loadbalancer-dispute
+    image: jersey-microservice-loadbalancer-dispute-instance1-img
+    container_name: jersey-microservice-loadbalancer-dispute-instance1-api
+    hostname: jersey-microservice-loadbalancer-dispute-instance1-api
+    ports:
+      - "8040:8080"
+    networks:
+      - mysqlnetwork
+
+  jersey-microservice-loadbalancer-dispute-instance2:
+    build:
+      context: ./jersey-microservice-loadbalancer-dispute
+    image: jersey-microservice-loadbalancer-dispute-instance2-img
+    container_name: jersey-microservice-loadbalancer-dispute-instance2-api
+    hostname: jersey-microservice-loadbalancer-dispute-instance2-api
+    ports:
+      - "8041:8080"
+    networks:
+      - mysqlnetwork
+
+####################
+networks:
+  mysqlnetwork:
+    external: true  # 使用外部已存在的網路
